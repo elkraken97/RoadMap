@@ -1,6 +1,7 @@
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Scanner;
 import java.util.Stack;
 
 public class numero07 {
@@ -62,7 +63,76 @@ public class numero07 {
 
 
 
-        //
+        //DIFICULTAD EXTRA
+        /*  DIFICULTAD EXTRA (opcional):
+         * - Utilizando la implementación de pila y cadenas de texto, simula el mecanismo adelante/atrás
+         *   de un navegador web. Crea un programa en el que puedas navegar a una página o indicarle
+         *   que te quieres desplazar adelante o atrás, mostrando en cada caso el nombre de la web.
+         *   Las palabras "adelante", "atrás" desencadenan esta acción, el resto se interpreta como
+         *   el nombre de una nueva web.
+         * - Utilizando la implementación de cola y cadenas de texto, simula el mecanismo de una
+         *   impresora compartida que recibe documentos y los imprime cuando así se le indica.
+         *   La palabra "imprimir" imprime un elemento de la cola, el resto de palabras se
+         *   interpretan como nombres de documentos.
+         */
+
+        Stack<String> web = new Stack<>();
+        Scanner sc = new Scanner(System.in);
+        String orden = "";
+
+
+        web.push("monas chinas");
+        web.push("chochox");
+        web.push("GTA VI download no fake");
+        web.push("bochi the rock");
+        web.push("hnk > todo");
+        web.push("a");
+        System.out.println("""
+                    Bienvenido al navegador (no se xd)
+                    Escriba
+                    adelante
+                    o
+                    atras
+                    
+                    escriba salir si quiere salir
+                    """);
+
+
+        Stack<String> descartadas = new Stack<>();
+        while(true){
+
+
+            orden = sc.nextLine();
+            if(orden.equalsIgnoreCase("salir")){
+                break;
+            }else if(orden.equalsIgnoreCase("adelante")) {
+
+                try{
+                    descartadas.push(web.peek());
+                    System.out.println(web.pop());
+                }catch (Exception e){
+                    System.out.println("no hay mas resultados");
+                }
+            }
+            else if(orden.equalsIgnoreCase("atras")){
+
+                try{
+                            web.push(descartadas.pop());
+
+                            System.out.println(descartadas.peek());
+                }catch (Exception e){
+                    System.out.println("no hay mas resultados atras");
+                }
+
+            }
+            else{
+                System.out.println("ups eso no esta disponible escribe correctamente la opcion esta ves porfavor");
+            }
+
+
+
+
+        }
 
     }
 
