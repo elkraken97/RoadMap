@@ -134,6 +134,54 @@ public class numero07 {
 
         }
 
+        Queue<String> impresora = new LinkedList<>();
+        boolean salir = true;
+        while(salir){
+
+            System.out.println("""
+                    'ingresar'-para ingresar documentos
+                    'imprimir'-para imprimir por orden los documentos
+                    'salir'-para salir
+                    """);
+            String op = sc.nextLine();
+            switch (op){
+                case "ingresar":
+                    while(true){
+                    System.out.println("ingresa los documentos que quieres imrpimir (ponga 'S' si quiere salir)");
+                    String agregar = sc.nextLine();
+                    if(agregar.equalsIgnoreCase("S")){
+                        break;
+                    }
+                    impresora.add(agregar);
+
+                        }
+                break;
+                case "imprimir":
+                    while(true){
+                        System.out.println("ingrese la palabra 'imprimir' para ir imprimiendo por orden del cual fue agregado(ingrese 'S' para salir)");
+
+                        String imp = sc.nextLine();
+                        if(imp.equalsIgnoreCase("S")){
+                            break;
+                        }else if(imp.equalsIgnoreCase("imprimir")){
+                            System.out.println(impresora.poll());
+                        }else{
+                            System.out.println("opcion no disponible");
+                        }
+
+
+                    }
+                    break;
+                case "salir":
+                    System.out.println("adios");
+                    salir=false;
+                    break;
+                default:
+                    System.out.println("opcion no disponible");
+
+            }
+        }
+
     }
 
 
