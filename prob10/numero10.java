@@ -34,15 +34,17 @@ public class numero10 {
         Scanner sc = new Scanner(System.in);
     try{
         LanzamientoDeExcepciones(sc.nextLine());
+        System.out.println("no se producio ningun error frase aceptada");
     } catch (TieneMayusculasExcepcion | TieneNumeros | TieneSignosEspecialesException e) {
         System.out.println(e);
     }
+        System.out.println("ejecucion finalizada");
     }
     private static void LanzamientoDeExcepciones(String procesar) throws TieneMayusculasExcepcion,TieneNumeros,TieneSignosEspecialesException {
 
         if(Pattern.compile("[A-Z]").matcher(procesar).find()){
             throw new TieneMayusculasExcepcion();
-        }else if(Pattern.compile("[^A-Z0-9]+").matcher(procesar).find()){
+        }else if(Pattern.compile("[^a-z0-9]+").matcher(procesar).find()){
             throw new TieneSignosEspecialesException();
         }else if(Pattern.compile("[0-9]").matcher(procesar).find()){
             throw new TieneNumeros();
