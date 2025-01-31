@@ -1,9 +1,10 @@
 package org.example;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 import java.util.Objects;
-
+@XmlRootElement
 public class Persona {
     private String Nombre;
     private int Edad;

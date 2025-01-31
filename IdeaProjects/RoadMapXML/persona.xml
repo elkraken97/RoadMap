@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<listadePersonas>
+    <listadepersonas>
+        <edad>22</edad>
+        <fechadenacmiento>3323</fechadenacmiento>
+        <lenguajesDeProgramacion>C++</lenguajesDeProgramacion>
+        <nombre>lucas</nombre>
+    </listadepersonas>
+    <listadepersonas>
+        <edad>22</edad>
+        <fechadenacmiento>3323</fechadenacmiento>
+        <lenguajesDeProgramacion>C++</lenguajesDeProgramacion>
+        <nombre>pepe</nombre>
+    </listadepersonas>
+    <listadepersonas>
+        <edad>22</edad>
+        <fechadenacmiento>3323</fechadenacmiento>
+        <lenguajesDeProgramacion>C++</lenguajesDeProgramacion>
+        <nombre>chacho</nombre>
+    </listadepersonas>
+</listadePersonas>

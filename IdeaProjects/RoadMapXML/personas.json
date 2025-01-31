@@ -1,1 +1,28 @@
-[{"fechadenacmiento":"2006/12/18","lenguajesDeProgramacion":["python","java","barinfuck"],"edad":18,"nombre":"pablito"},{"fechadenacmiento":"23434","lenguajesDeProgramacion":["python","java","barinfuck"],"edad":22,"nombre":"pepe"}]
+{
+  "listadepersonas": [
+    {
+      "fechadenacmiento": "3323",
+      "lenguajesDeProgramacion": [
+        "C++"
+      ],
+      "nombre": "lucas",
+      "edad": 22
+    },
+    {
+      "fechadenacmiento": "3323",
+      "lenguajesDeProgramacion": [
+        "C++"
+      ],
+      "nombre": "pepe",
+      "edad": 22
+    },
+    {
+      "fechadenacmiento": "3323",
+      "lenguajesDeProgramacion": [
+        "C++"
+      ],
+      "nombre": "chacho",
+      "edad": 22
+    }
+  ]
+}
