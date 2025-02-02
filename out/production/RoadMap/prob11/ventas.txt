@@ -1,0 +1,4 @@
+Nombre:cafe,Precio:34.0,Cantidad Vendida:55
+Nombre:azucar,Precio:20.0,Cantidad Vendida:12
+Nombre:chela,Precio:2.0,Cantidad Vendida:2
+Nombre:te,Precio:10.0,Cantidad Vendida:43

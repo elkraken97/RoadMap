@@ -1,7 +1,6 @@
 package prob09;
 
 
-
 public class numero09 {
     public static void main(String[] args) {
         Gerente g = new Gerente(1,"Chucho el gerente");
