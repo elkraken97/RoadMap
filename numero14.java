@@ -1,11 +1,12 @@
-import javax.print.attribute.standard.Finishings;
-import java.text.DateFormat;
+
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.format.TextStyle;
+import java.util.Locale;
 
 public class numero14 {
     public static void main(String[] args) {
-        LocalDateTime actual = LocalDateTime.now();
+   /*     LocalDateTime actual = LocalDateTime.now();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 
         System.out.println(actual.format(formato));
@@ -23,6 +24,20 @@ public class numero14 {
                 +p.getDays()+" Dias "
                 +d.toHours()+" Horas "
                 +(d.toMinutes() % 60)
-                +" Minutos "+(d.toSeconds())%60 + " segundos" );
+                +" Minutos "+(d.toSeconds())%60 + " segundos" );*/
+
+        //DIFICULTAD EXTRA
+        LocalDateTime date = LocalDateTime.of(2006,9,6,18,30,6);
+
+        DateTimeFormatter f = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        System.out.println(date.format(f));
+        System.out.println(date.getDayOfYear());
+        System.out.println(date.getDayOfWeek().getDisplayName(TextStyle.FULL,new Locale("ES","mx")));
+        System.out.println(date.getMonth().getDisplayName(TextStyle.FULL,new Locale("ES","mx")));
+
+
+
+
+
     }
 }
