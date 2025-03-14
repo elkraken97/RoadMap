@@ -1,4 +1,6 @@
-package numero26;
+package numero26SRP;
+
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +11,7 @@ public class Usuario {
     private static int count = 0;
     private String correo;
     private String password;
-    private final List<Librow> prestados = new ArrayList<>();
+    private final List<Libro> prestados = new ArrayList<>();
     public Usuario(String correo, String nombre, String password) {
         this.correo = correo;
         this.password = password;
@@ -17,7 +19,7 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public List<Librow> verPrestados(){
+    public List<Libro> verPrestados(){
         return prestados;
     }
     @Override
@@ -29,10 +31,10 @@ public class Usuario {
                 '}';
     }
 
-    public void devolverLibro(Librow librow){
+    public void devolverLibro(Libro librow){
         prestados.remove(librow);
     }
-    public void agregarPrestado(Librow librow){
+    public void agregarPrestado(Libro librow){
         prestados.add(librow);
     }
 

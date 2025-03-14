@@ -1,9 +1,11 @@
-package numero26;
+package numero26SRP;
+
+import java.util.Objects;
 
 public class Libro {
     private String titulo;
     private String desc;
-    private boolean prestado;
+
     private String autor;
     private int copias;
 
@@ -11,7 +13,7 @@ public class Libro {
     public Libro(String titulo, String desc, String autor, int copias) {
         this.titulo = titulo;
         this.desc = desc;
-        this.prestado = false;
+
         this.autor = autor;
         this.copias = copias;
     }
@@ -32,13 +34,7 @@ public class Libro {
         this.desc = desc;
     }
 
-    public boolean isPrestado() {
-        return prestado;
-    }
 
-    public void setPrestado(boolean prestado) {
-        this.prestado = prestado;
-    }
 
     public String getAutor() {
         return autor;
@@ -61,9 +57,20 @@ public class Libro {
         return "Libro{" +
                 "titulo='" + titulo + '\'' +
                 ", desc='" + desc + '\'' +
-                ", prestado=" + prestado +
                 ", autor='" + autor + '\'' +
                 ", copias=" + copias +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Libro libro = (Libro) o;
+        return copias == libro.copias && Objects.equals(titulo, libro.titulo) && Objects.equals(desc, libro.desc) && Objects.equals(autor, libro.autor);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(titulo, desc, autor, copias);
     }
 }
