@@ -9,13 +9,22 @@ public class Participante {
     private Character Genero;
     private double altura;
     private double peso;
-
-    public Participante(String nombre, int edad, Character genero, double altura, double peso) {
+    private String NombreDelEventoAPArticipar;
+    public Participante(String nombre, int edad, Character genero, double altura, double peso,String NombreDelEventoAPArticipar) {
         this.nombre = nombre;
         this.edad = edad;
         Genero = genero;
         this.altura = altura;
         this.peso = peso;
+        this.NombreDelEventoAPArticipar = NombreDelEventoAPArticipar;
+    }
+
+    public String getNombreDelEventoAPArticipar() {
+        return NombreDelEventoAPArticipar;
+    }
+
+    public void setNombreDelEventoAPArticipar(String nombreDelEventoAPArticipar) {
+        NombreDelEventoAPArticipar = nombreDelEventoAPArticipar;
     }
 
     public String getNombre() {

@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ControlDeEventos {
-    private final ControlParticipantes control = new ControlParticipantes();
+    private ControlParticipantes control;
+    public ControlDeEventos(ControlParticipantes controol){
+        this.control = controol;
+    }
     private final List<Evento> Eventos = new ArrayList<>();
 
     public boolean CrearEvento(String nombre,String fecha){
@@ -25,11 +28,28 @@ public class ControlDeEventos {
 
         for (Evento evento : Eventos) {
             if(evento.equals(NombreEvento)){
-                evento.agregarParticipante(control.BuscarParticipante(nombre));
+                Participante p = control.buscarParticipante(nombre);
+                if(p != null)evento.agregarParticipante(p);
                 return true;
             }
         }
             return false;
+    }
+
+
+    public Evento buscarEvento(String nombre){
+        for (Evento evento : Eventos) {
+            if(evento.equals(nombre)){
+                return evento;
+            }
+        }
+        return null;
+    }
+    public void mostrarEventos(){
+        System.out.println("Eventos Disponibles");
+        for (Evento evento : Eventos) {
+            System.out.println(evento.getNombreDelEvento());
+        }
     }
 
 }
