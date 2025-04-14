@@ -2,6 +2,7 @@ package numero31;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ControlParticipantes {
 
@@ -9,20 +10,35 @@ public class ControlParticipantes {
 
     public Participante buscarParticipante(String nombre){
         for (Participante participante : TodosLosParticipantes) {
-            if(participante.equals(nombre)){
+            if(Objects.equals(participante.getNombre(), nombre)){
                 return participante;
             }
         }
         return null;
     }
-    public boolean agregarParticipante(String nombre, int edad, Character genero, double altura, double peso,String evento){
-        Participante nuevoParticipante = new Participante(nombre,  edad,  genero,  altura,  peso,evento);
+
+    public List<Participante> buscarParticipantePorPais(String pais){
+        List<Participante> especi = new ArrayList<>();
+        for (Participante participante : TodosLosParticipantes) {
+            if(Objects.equals(participante.getPais(), pais)){
+                especi.add(participante);
+            }
+        }
+        return especi.isEmpty()?especi:null;
+    }
+    public boolean agregarParticipante(String nombre,String pais){
+        Participante nuevoParticipante = new Participante(nombre,pais);
 
 
         boolean agregado = TodosLosParticipantes.add(nuevoParticipante);
 
-        return TodosLosParticipantes.contains(nuevoParticipante) && agregado;
+        return TodosLosParticipantes.contains(nuevoParticipante);
     }
+
+    public List<Participante> getTodosLosParticipantes() {
+        return TodosLosParticipantes;
+    }
+
     public void mostrarParticipantes(){
         System.out.println("Particpantes:");
         for (Participante par : TodosLosParticipantes) {

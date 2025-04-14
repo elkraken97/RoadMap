@@ -1,6 +1,6 @@
 package numero31;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class JuegosOlimipicos {
     private static final ControlParticipantes controlParticipantes = new ControlParticipantes();
@@ -18,11 +18,16 @@ public class JuegosOlimipicos {
                     5.-Salir
                     """);
             int op = sc.nextInt();
+            sc.nextLine();
             switch (op){
                 case 1->
                     RegistroDeEventos(sc);
                 case 2->
                     RegistrarParticipantes(sc);
+                case 3->
+                    SimularEventos();
+                case 4->
+                    VerInforme();
                 case 5->
                     salir = true;
                 default->
@@ -30,6 +35,57 @@ public class JuegosOlimipicos {
             }
         }
     }
+
+    private static void VerInforme() {
+        System.out.println("INFORME");
+        int i = 0;
+        for (Evento evento : controlDeEventos.getEventos()) {
+            System.out.println("Ganadores de "+evento.getNombreDelEvento());
+            for (Participante ganadore : evento.getGanadores()) {
+                switch (i){
+                    case 1->System.out.println("Oro:"+ganadore);
+                    case 2-> System.out.println("Plata:"+ganadore);
+                    case 3-> System.out.println("Bronces:"+ganadore);
+                }
+                i++;
+            }
+        }
+
+
+        System.out.println("Raking de los paises con mas medallas");
+
+        Map<String,Integer> ranking = new HashMap<>();
+        for (Evento evento : controlDeEventos.getEventos()) {
+            for (Participante ganadore : evento.getGanadores()) {
+
+                    ranking.put(ganadore.getPais(),ranking.getOrDefault(ganadore.getPais(), 0) + 1);
+
+            }
+        }
+        List<Map.Entry<String, Integer>> listaDeEntradas = new ArrayList<>(ranking.entrySet());
+        listaDeEntradas.sort((e1, e2) -> e2.getValue().compareTo(e1.getValue()));
+        Map<String, Integer> rankingOrdenado = new LinkedHashMap<>();
+        for (Map.Entry<String, Integer> entrada : listaDeEntradas) {
+            rankingOrdenado.put(entrada.getKey(), entrada.getValue());
+        }
+
+        rankingOrdenado.forEach((pais,medallas)-> System.out.println("Pais: "+pais+"\n"+"Numerode medallas"+medallas+"\n\n")
+        );
+
+
+
+    }
+
+    private static void SimularEventos() {
+        if(controlDeEventos.HayEventos()) {
+            System.out.println(controlDeEventos.SimularEventos());
+        }else{
+            System.out.println("No hay eventos para simular agrega uno");
+        }
+    }
+
+
+
 
     private static void RegistrarParticipantes(Scanner sc) {
         boolean salir = false;
@@ -42,35 +98,30 @@ public class JuegosOlimipicos {
                    \s""");
             System.out.println("Ingrese el nombre del participante:");
             String nombre = sc.nextLine();
-            System.out.println("Ingrese la edad del Participante");
-            int edad = sc.nextInt();
-            System.out.println("Ingrese el Genero del Participante 'M' o 'F'");
-            Character genero = sc.nextLine().charAt(0);
-            System.out.println("Ingresa la altura");
-            double altura = sc.nextDouble();
-            System.out.println("Ingresa el peso");
-            double peso = sc.nextDouble();
-            System.out.println("Ingrese el nombre del evento al que va a participar el Participante");
-            controlDeEventos.mostrarEventos();
-            Evento e =  controlDeEventos.buscarEvento(sc.nextLine());
-            if(e==null){
-                System.out.println("No existe ese evento");
-            }else{
+            System.out.println("Ingrese el pais del Participante");
+            String pais = sc.nextLine();
 
 
 
-            if (controlParticipantes.agregarParticipante(nombre,edad,genero,altura,peso,e.getNombreDelEvento())) {
-                controlDeEventos.FicharParticipante(nombre,e.getNombreDelEvento());
+
+
+            if (controlParticipantes.agregarParticipante(nombre,pais)) {
+
                 System.out.println("Participante agregado Exitosamente");
 
 
             }else{
                 System.out.println("Algo paso el participante no se agrego como se debia");
             }
-            System.out.println("Desea agregar mas eventos?Si(1)No(2)");
-            int op = sc.nextInt();
-
-            salir = op==2;}
+            System.out.println("Desea agregar mas participantes?Si(1)No(2)");
+            int op =0;
+            try {
+                op = sc.nextInt();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            salir = op==2;
+            sc.nextLine();
         }
     }
 
@@ -85,9 +136,8 @@ public class JuegosOlimipicos {
                     Ingrese el nombre:
                     """);
             String nombre = sc.nextLine();
-            System.out.println("Ingrese la fecha ");
-            String fecha = sc.nextLine();
-            if(controlDeEventos.CrearEvento(nombre,fecha)){
+
+            if(controlDeEventos.CrearEvento(nombre)){
                 System.out.println("Evento agregado exitosamente!");
             }else{
                 System.out.println("El evento no se agrego como debia");
@@ -96,7 +146,7 @@ public class JuegosOlimipicos {
             int op = sc.nextInt();
 
             salir = op==2;
-
+            sc.nextLine();
         }
 
     }

@@ -1,55 +1,54 @@
 package numero31;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class ControlDeEventos {
-    private ControlParticipantes control;
+    private final ControlParticipantes control;
     public ControlDeEventos(ControlParticipantes controol){
         this.control = controol;
     }
     private final List<Evento> Eventos = new ArrayList<>();
 
-    public boolean CrearEvento(String nombre,String fecha){
 
-        Evento nuevoEvento = new Evento(nombre, fecha);
+    public List<Evento> getEventos() {
+        return Eventos;
+    }
+
+    public boolean CrearEvento(String nombre){
+
+        Evento nuevoEvento = new Evento(nombre);
 
 
-        boolean agregado = Eventos.add(nuevoEvento);
+            Eventos.add(nuevoEvento);
 
-        return Eventos.contains(nuevoEvento) && agregado;
+        return Eventos.contains(nuevoEvento) ;
 
     }
-    public void EliminarEvento(Evento e){
-        System.out.println("!!!Advertencia al eliminar eventos tambien eliminara este evento de la lista de personas\n"+"que tengan este evento registrado");
-        Eventos.remove(e);
-    }
-    public boolean FicharParticipante(String nombre,String NombreEvento){
 
+    public boolean HayEventos(){
+        return !Eventos.isEmpty();
+    }
+
+    public String SimularEventos(){
+        String eventos= "";
         for (Evento evento : Eventos) {
-            if(evento.equals(NombreEvento)){
-                Participante p = control.buscarParticipante(nombre);
-                if(p != null)evento.agregarParticipante(p);
-                return true;
-            }
+            List<Participante> p =control.getTodosLosParticipantes();
+            Collections.shuffle(p);
+
+            evento.setGanadores(Arrays.asList(p.get(0),p.get(1),p.get(2)));
+            eventos += "Evento: " + evento.getNombreDelEvento() + "\n" +
+                    "Primer lugar: " + p.get(0).toString() + "\n" +
+                    "Segundo lugar: " + p.get(1).toString() + "\n" +
+                    "Tercer lugar: " + p.get(2).toString();
+
+
         }
-            return false;
+        return eventos;
+
+
     }
 
 
-    public Evento buscarEvento(String nombre){
-        for (Evento evento : Eventos) {
-            if(evento.equals(nombre)){
-                return evento;
-            }
-        }
-        return null;
-    }
-    public void mostrarEventos(){
-        System.out.println("Eventos Disponibles");
-        for (Evento evento : Eventos) {
-            System.out.println(evento.getNombreDelEvento());
-        }
-    }
+
 
 }
